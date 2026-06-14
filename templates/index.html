@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exoplanet Data Management </title>
+  </head>
+  <body>
+    <h1>Exoplanet Data Management</h1>
+    <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Mass</th>
+            <th>Radius</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in exoplanet_data %}
+          <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>
+              <form action="/update_planet_data" method="post">
+                <input type="hidden" name="planet_name" value="{{ row[1] }}">
+                <input type="submit" value="Update">
+              </form>
+              <form action="/delete_record" method="post">
+                <input type="hidden" name="planet_id_to_delete" value="{{ row[0] }}">
+                <input type="submit" value="Delete">
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+
+    <h2>Add a new exoplanet</h2>
+    <form action="/insert_record" method="post">
+      <input type="text" name="planet_name" placeholder="Name">
+      <input type="text" name="mass" placeholder="Mass">
+      <input type="text" name="radius" placeholder="Radius">
+      <input type="text" name="semi_major_axis" placeholder="Semi-Major Axis">
+      <input type="text" name="eccentricity" placeholder="Eccentricity">
+      <input type="text" name="star_name" placeholder="Star Name">
+      <input type="submit" value="Create">
+    </form>
+  </body>
+</html>
