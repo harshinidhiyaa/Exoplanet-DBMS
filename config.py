@@ -1,0 +1,5 @@
+DB_NAME = "harshini"
+DB_USER = "harshini"
+DB_PASSWORD = "fccb38f8"
+DB_HOST = "10.2.95.122"
+DB_PORT = "5432"
